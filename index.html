@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع القسم الأكاديمي | لوحة ألوان ترابية</title>
+    <title>موقع القسم الأكاديمي | هندسة تقنيات الذكاء الاصطناعي</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* تطبيق لوحة الألوان الخاصة بك */
+        /* تعريف الألوان الترابية الخاصة بك */
         :root {
-            --color-1: #FFEDD8; /* الأفتح - للخلفيات */
+            --color-1: #FFEDD8;
             --color-2: #F3D5B5;
             --color-3: #E7BC91;
             --color-4: #D4A276;
-            --color-5: #BC8A5F; /* اللون الأساسي للهوية */
+            --color-5: #BC8A5F;
             --color-6: #A47148;
             --color-7: #8B5E34;
             --color-8: #6F4518;
             --color-9: #603808;
-            --color-10: #583101; /* الأغمق - للفوتر والنصوص */
-            
-            --white-glass: rgba(255, 237, 216, 0.85); /* تعتمد على اللون الأول */
+            --color-10: #583101;
+            --white-glass: rgba(255, 237, 216, 0.85);
+        }
+
+        /* حركات CSS مخصصة عند تحميل الصفحة */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +47,7 @@
             background-position: center;
             color: var(--color-10);
             line-height: 1.6;
+            overflow-x: hidden; /* لمنع ظهور شريط تمرير عرضي بسبب الحركات */
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -48,6 +61,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: fadeInDown 0.8s ease-out; /* حركة الهيدر */
         }
 
         .header-content { display: flex; justify-content: space-between; align-items: center; }
@@ -61,13 +75,24 @@
         .hero {
             padding: 120px 0;
             text-align: center;
-            background: rgba(96, 56, 8, 0.1); /* شفافية من اللون التاسع */
+            background: rgba(96, 56, 8, 0.1);
             backdrop-filter: blur(3px);
             border-bottom: 1px solid var(--color-4);
         }
 
-        .hero h1 { font-size: 3.2rem; color: var(--color-10); margin-bottom: 15px; }
-        .hero p { color: var(--color-9); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; }
+        .hero h1 { 
+            font-size: 3.2rem; 
+            color: var(--color-10); 
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease-out; /* حركة العنوان */
+        }
+        .hero p { 
+            color: var(--color-9); 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto 30px auto;
+            animation: fadeInUp 1.2s ease-out; /* حركة النص */
+        }
         
         .btn-main {
             display: inline-block;
@@ -78,6 +103,7 @@
             font-weight: 700;
             border-radius: 4px;
             transition: 0.3s;
+            animation: fadeInUp 1.4s ease-out; /* حركة الزر */
         }
         .btn-main:hover { background-color: var(--color-10); transform: translateY(-2px); }
 
@@ -91,7 +117,7 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(88, 49, 1, 0.1);
-            transition: 0.3s;
+            transition: 0.4s ease;
         }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(88, 49, 1, 0.2); }
         .card img { width: 100%; height: 200px; object-fit: cover; filter: sepia(20%); }
@@ -101,7 +127,7 @@
 
         /* Footer Section */
         footer {
-            background-color: var(--color-10); /* اللون الأغمق للفوتر */
+            background-color: var(--color-10);
             color: var(--color-1);
             padding: 60px 0 30px 0;
             margin-top: 50px;
@@ -184,7 +210,7 @@
         <div class="container">
             <div class="grid-container">
                 
-                <div class="card">
+                <div class="card" data-aos="fade-right" data-aos-duration="1000">
                     <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60" alt="Education">
                     <div class="card-body">
                         <h3>المناهج الدراسية</h3>
@@ -192,7 +218,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" data-aos="fade-up" data-aos-duration="1200">
                     <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60" alt="Research">
                     <div class="card-body">
                         <h3>المختبرات العلمية</h3>
@@ -200,7 +226,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" data-aos="fade-left" data-aos-duration="1400">
                     <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=60" alt="Students">
                     <div class="card-body">
                         <h3>شؤون الطلبة</h3>
@@ -212,7 +238,7 @@
         </div>
     </section>
 
-    <footer>
+    <footer data-aos="fade-up">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -242,10 +268,18 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; جميع الحقوق محفوظة للقسم الأكاديمي. .</p>
+                <p>&copy; جميع الحقوق محفوظة للقسم الأكاديمي.</p>
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // تشغيل المكتبة
+        AOS.init({
+            once: true // الأنيميشن يشتغل مرة واحدة فقط أثناء النزول
+        });
+    </script>
 
 </body>
 </html>
