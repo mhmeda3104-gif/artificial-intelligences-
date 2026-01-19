@@ -1,252 +1,68 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هندسة تقنيات الذكاء الاصطناعي </title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <style>
-        /* تطبيق لوحة الألوان الخاصة بك */
-        :root {
-            --color-1: #FFEDD8; /* الأفتح - للخلفيات */
-            --color-2: #F3D5B5;
-            --color-3: #E7BC91;
-            --color-4: #D4A276;
-            --color-5: #BC8A5F; /* اللون الأساسي للهوية */
-            --color-6: #A47148;
-            --color-7: #8B5E34;
-            --color-8: #6F4518;
-            --color-9: #603808;
-            --color-10: #583101; /* الأغمق - للفوتر والنصوص */
-            
-            --white-glass: rgba(255, 237, 216, 0.85); /* تعتمد على اللون الأول */
-        }
+<style>
+  :root {
+    --primary-color: #8B5E34; /* أحد ألوانك المختارة */
+    --accent-color: #FFEDD8;  /* لون فاتح للخلفية */
+  }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+  .swiper {
+    width: 100%;
+    height: 400px; /* يمكنك تعديل الارتفاع */
+    border-radius: 15px;
+  }
 
-        body {
-            font-family: 'Noto Sans Arabic', sans-serif;
-            background-image: url('bg.jpg'); 
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            color: var(--color-10);
-            line-height: 1.6;
-        }
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color);
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لضمان عدم تشوه الصور */
+  }
 
-        /* Navigation */
-        header {
-            background-color: var(--color-1);
-            border-bottom: 4px solid var(--color-7);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  /* تخصيص ألوان أزرار التنقل لتناسب ذوقك */
+  .swiper-button-next, .swiper-button-prev {
+    color: var(--primary-color) !important;
+  }
+  .swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+  }
+</style>
 
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 700; font-size: 1.4rem; color: var(--color-10); text-decoration: none; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-right: 20px; }
-        nav ul li a { text-decoration: none; color: var(--color-9); font-weight: 700; transition: 0.3s; }
-        nav ul li a:hover { color: var(--color-5); }
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="photo_2026-01-20_00-40-35.jpg" alt="Slide 1"></div>
+    <div class="swiper-slide"><img src="photo_2026-01-18_01-19-21.jpg" alt="Slide 2"></div>
+    <div class="swiper-slide"><img src="imagesslider1.jpg.JPG" alt="Slide 3"></div>
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
+</div>
 
-        /* Hero Section */
-        .hero {
-            padding: 120px 0;
-            text-align: center;
-            background: rgba(96, 56, 8, 0.1); /* شفافية من اللون التاسع */
-            backdrop-filter: blur(3px);
-            border-bottom: 1px solid var(--color-4);
-        }
-
-        .hero h1 { font-size: 3.2rem; color: var(--color-10); margin-bottom: 15px; }
-        .hero p { color: var(--color-9); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; }
-        
-        .btn-main {
-            display: inline-block;
-            background-color: var(--color-8);
-            color: var(--color-1);
-            padding: 12px 35px;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-        .btn-main:hover { background-color: var(--color-10); transform: translateY(-2px); }
-
-        /* Content Grid */
-        .features { padding: 80px 0; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .card {
-            background: var(--white-glass);
-            border-bottom: 5px solid var(--color-6);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(88, 49, 1, 0.1);
-            transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(88, 49, 1, 0.2); }
-        .card img { width: 100%; height: 200px; object-fit: cover; filter: sepia(20%); }
-        .card-body { padding: 25px; }
-        .card-body h3 { color: var(--color-10); margin-bottom: 12px; font-size: 1.4rem; }
-        .card-body p { color: var(--color-9); font-size: 0.95rem; }
-
-        /* Footer Section */
-        footer {
-            background-color: var(--color-10); /* اللون الأغمق للفوتر */
-            color: var(--color-1);
-            padding: 60px 0 30px 0;
-            margin-top: 50px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
-            color: var(--color-2);
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            right: 0; bottom: 0;
-            width: 40px; height: 3px;
-            background: var(--color-5);
-        }
-
-        .footer-col p, .footer-col ul li { font-size: 0.9rem; color: var(--color-2); margin-bottom: 12px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li a { color: var(--color-2); text-decoration: none; transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--color-4); padding-right: 8px; }
-
-        .social-links a {
-            color: var(--color-1);
-            font-size: 1.6rem;
-            margin-left: 20px;
-            transition: 0.3s;
-        }
-        .social-links a:hover { color: var(--color-4); }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,237,216, 0.1);
-            padding-top: 25px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--color-3);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            nav ul { display: none; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container header-content">
-            <a href="#" class="logo">هندسة تقنيات الذكاء الاصطناعي </a>
-            <nav>
-                <ul>
-                    <li><a href="#">الرئيسية</a></li>
-                    <li><a href="#">المناهج</a></li>
-                    <li><a href="#">البحوث</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>التميز العلمي والمعرفي</h1>
-            <p>مرحبًا بكم في البوابة الرقمية للقسم، حيث نجتمع لبناء مستقبل أفضل من خلال العلم والابتكار.</p>
-            <a href="#" class="btn-main">استكشف</a>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="container">
-            <div class="grid-container">
-                
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60" alt="Education">
-                    <div class="card-body">
-                        <h3>المناهج الدراسية</h3>
-                        <p>اطلع على الخطة الدراسية التفصيلية والمواد المقررة لكل مرحلة دراسية في القسم.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60" alt="Research">
-                    <div class="card-body">
-                        <h3>المختبرات العلمية</h3>
-                        <p>تعرف على أحدث الأجهزة والمعدات المتوفرة في مختبرات القسم لخدمة الجانب التطبيقي.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=60" alt="Students">
-                    <div class="card-body">
-                        <h3>شؤون الطلبة</h3>
-                        <p>كل ما يخص الطالب من جداول الامتحانات، نتائج، وتعليمات انضباطية.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>رسالة القسم</h4>
-                    <p>إعداد كفاءات علمية متخصصة قادرة على الإبداع والمنافسة في سوق العمل المحلي والدولي.</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>روابط هامة</h4>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-link"></i> الباحث العلمي</a></li>
-                        <li><a href="#"><i class="fas fa-link"></i> مجلة الكلية</a></li>
-                        <li><a href="#"><i class="fas fa-link"></i> شؤون الدراسات العليا</a></li>
-                        <li><a href="#"><i class="fas fa-link"></i> وظيفة</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>تواصل معنا</h4>
-                    <p><i class="fas fa-envelope"></i> dept@university.edu.iq</p>
-                    <p><i class="fas fa-phone"></i> 0780 000 0000</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy;جميع الحقوق محفوظة للقسم الأكاديمي. .</p>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
