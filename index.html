@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع القسم | نمط براون مع خلفية مخصصة</title>
+    <title>موقع القسم الأكاديمي | لوحة ألوان ترابية</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* المتغيرات والألوان */
+        /* تطبيق لوحة الألوان الخاصة بك */
         :root {
-            --brown-primary: #4E3629; 
-            --brown-red: #ED1C24;     
-            --text-dark: #262626;
-            --white-glass: rgba(255, 255, 255, 0.85); /* خلفية بيضاء شفافة */
+            --color-1: #FFEDD8; /* الأفتح - للخلفيات */
+            --color-2: #F3D5B5;
+            --color-3: #E7BC91;
+            --color-4: #D4A276;
+            --color-5: #BC8A5F; /* اللون الأساسي للهوية */
+            --color-6: #A47148;
+            --color-7: #8B5E34;
+            --color-8: #6F4518;
+            --color-9: #603808;
+            --color-10: #583101; /* الأغمق - للفوتر والنصوص */
+            
+            --white-glass: rgba(255, 237, 216, 0.85); /* تعتمد على اللون الأول */
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Noto Sans Arabic', sans-serif;
-            /* إضافة الصورة كخلفية للموقع بالكامل */
             background-image: url('bg.jpg'); 
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
-            color: var(--text-dark);
+            color: var(--color-10);
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* الهيدر */
+        /* Navigation */
         header {
-            background-color: white; /* الهيدر يفضل أن يبقى أبيض صريح للوضوح */
-            border-bottom: 5px solid var(--brown-red);
+            background-color: var(--color-1);
+            border-bottom: 4px solid var(--color-7);
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -50,113 +50,109 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--brown-primary);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 1.4rem; color: var(--color-10); text-decoration: none; }
+        nav ul { display: flex; list-style: none; }
         nav ul li { margin-right: 20px; }
+        nav ul li a { text-decoration: none; color: var(--color-9); font-weight: 700; transition: 0.3s; }
+        nav ul li a:hover { color: var(--color-5); }
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* قسم الواجهة (Hero) - جعلناه شفافاً ليظهر الورق */
+        /* Hero Section */
         .hero {
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
-            background: rgba(255, 255, 255, 0.2); /* شفافية عالية جداً */
-            backdrop-filter: blur(2px); /* تغبيش بسيط للخلفية */
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba(96, 56, 8, 0.1); /* شفافية من اللون التاسع */
+            backdrop-filter: blur(3px);
+            border-bottom: 1px solid var(--color-4);
         }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            color: var(--brown-primary);
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-
+        .hero h1 { font-size: 3.2rem; color: var(--color-10); margin-bottom: 15px; }
+        .hero p { color: var(--color-9); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; }
+        
         .btn-main {
             display: inline-block;
-            background-color: var(--brown-red);
-            color: white;
-            padding: 12px 30px;
+            background-color: var(--color-8);
+            color: var(--color-1);
+            padding: 12px 35px;
             text-decoration: none;
             font-weight: 700;
-            margin-top: 20px;
+            border-radius: 4px;
             transition: 0.3s;
         }
+        .btn-main:hover { background-color: var(--color-10); transform: translateY(-2px); }
 
-        .btn-main:hover { background: var(--brown-primary); }
-
-        /* شبكة الكروت */
-        .features { padding: 60px 0; }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
+        /* Content Grid */
+        .features { padding: 80px 0; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
         .card {
-            background: var(--white-glass); /* كروت شفافة جزئياً */
-            backdrop-filter: blur(5px);
-            border-top: 4px solid var(--brown-red);
-            padding: 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            background: var(--white-glass);
+            border-bottom: 5px solid var(--color-6);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(88, 49, 1, 0.1);
             transition: 0.3s;
         }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(88, 49, 1, 0.2); }
+        .card img { width: 100%; height: 200px; object-fit: cover; filter: sepia(20%); }
+        .card-body { padding: 25px; }
+        .card-body h3 { color: var(--color-10); margin-bottom: 12px; font-size: 1.4rem; }
+        .card-body p { color: var(--color-9); font-size: 0.95rem; }
 
-        .card:hover { transform: translateY(-5px); }
-
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-
-        .card-body { padding: 20px; }
-
-        .card-body h3 { color: var(--brown-primary); margin-bottom: 10px; }
-
-        /* الفوتر */
+        /* Footer Section */
         footer {
-            background: var(--brown-primary);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
+            background-color: var(--color-10); /* اللون الأغمق للفوتر */
+            color: var(--color-1);
+            padding: 60px 0 30px 0;
             margin-top: 50px;
         }
 
-        /* لمسة إضافية: ووتر مارك خلف العناوين */
-        .section-title {
-            text-align: center;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             margin-bottom: 40px;
-            font-size: 2rem;
-            color: var(--brown-primary);
+        }
+
+        .footer-col h4 {
+            color: var(--color-2);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            right: 0; bottom: 0;
+            width: 40px; height: 3px;
+            background: var(--color-5);
+        }
+
+        .footer-col p, .footer-col ul li { font-size: 0.9rem; color: var(--color-2); margin-bottom: 12px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li a { color: var(--color-2); text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--color-4); padding-right: 8px; }
+
+        .social-links a {
+            color: var(--color-1);
+            font-size: 1.6rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+        .social-links a:hover { color: var(--color-4); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,237,216, 0.1);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-3);
         }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2rem; }
-            nav ul { display: none; } /* لإخفاء القائمة في الموبايل وتبسيطها */
+            .hero h1 { font-size: 2.2rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
@@ -164,12 +160,12 @@
 
     <header>
         <div class="container header-content">
-            <a href="#" class="logo">هندسة تقنيات الذكاء الاصطناعي</a>
+            <a href="#" class="logo">اسم القسم الأكاديمي</a>
             <nav>
                 <ul>
                     <li><a href="#">الرئيسية</a></li>
                     <li><a href="#">المناهج</a></li>
-                    <li><a href="#">الأساتذة</a></li>
+                    <li><a href="#">البحوث</a></li>
                     <li><a href="#">اتصل بنا</a></li>
                 </ul>
             </nav>
@@ -178,40 +174,37 @@
 
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>مرحباً بكم في قسمنا</h1>
-                <p>منصة التعليم والبحث العلمي - مبنية على التميز والإبداع.</p>
-                <a href="#" class="btn-main">اكتشف المزيد</a>
-            </div>
+            <h1>التميز العلمي والمعرفي</h1>
+            <p>مرحبًا بكم في البوابة الرقمية للقسم، حيث نجتمع لبناء مستقبل أفضل من خلال العلم والابتكار.</p>
+            <a href="#" class="btn-main">استكشف برامجنا</a>
         </div>
     </section>
 
     <section class="features">
         <div class="container">
-            <h2 class="section-title">روابط سريعة</h2>
             <div class="grid-container">
                 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=60" alt="Lectures">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60" alt="Education">
                     <div class="card-body">
-                        <h3>المحاضرات</h3>
-                        <p>تجد هنا كافة المحاضرات الأسبوعية للمواد الدراسية بصيغة PDF لجميع المراحل.</p>
+                        <h3>المناهج الدراسية</h3>
+                        <p>اطلع على الخطة الدراسية التفصيلية والمواد المقررة لكل مرحلة دراسية في القسم.</p>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=60" alt="Projects">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60" alt="Research">
                     <div class="card-body">
-                        <h3>مشاريع التخرج</h3>
-                        <p>استكشف أرشيف مشاريع التخرج المتميزة التي قدمها طلبة القسم في السنوات السابقة.</p>
+                        <h3>المختبرات العلمية</h3>
+                        <p>تعرف على أحدث الأجهزة والمعدات المتوفرة في مختبرات القسم لخدمة الجانب التطبيقي.</p>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=500&q=60" alt="Events">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=60" alt="Students">
                     <div class="card-body">
-                        <h3>النشاطات</h3>
-                        <p>ابقَ على اطلاع بآخر الندوات، ورش العمل، والمسابقات العلمية داخل القسم.</p>
+                        <h3>شؤون الطلبة</h3>
+                        <p>كل ما يخص الطالب من جداول الامتحانات، نتائج، وتعليمات انضباطية.</p>
                     </div>
                 </div>
 
@@ -221,8 +214,36 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 جميع الحقوق محفوظة للقسم الأكاديمي</p>
-            <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">صمم الموقع بنمط Brown University</p>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>رسالة القسم</h4>
+                    <p>إعداد كفاءات علمية متخصصة قادرة على الإبداع والمنافسة في سوق العمل المحلي والدولي.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>روابط هامة</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-link"></i> الباحث العلمي</a></li>
+                        <li><a href="#"><i class="fas fa-link"></i> مجلة الكلية</a></li>
+                        <li><a href="#"><i class="fas fa-link"></i> شؤون الدراسات العليا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-envelope"></i> dept@university.edu.iq</p>
+                    <p><i class="fas fa-phone"></i> 0780 000 0000</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 جميع الحقوق محفوظة للقسم الأكاديمي. صُمم باستخدام تدرجات الألوان الترابية.</p>
+            </div>
         </div>
     </footer>
 
