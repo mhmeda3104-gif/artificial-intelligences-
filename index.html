@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">هندسة تقنيات الذكاء الاصطناعي</title>
+    <title>هندسة تقنيات الذكاء الاصطناعي </title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* تطبيق لوحة الألوان الخاصة بك */
         :root {
-            --color-1: #FFEDD8;
+            --color-1: #FFEDD8; /* الأفتح - للخلفيات */
             --color-2: #F3D5B5;
             --color-3: #E7BC91;
             --color-4: #D4A276;
-            --color-5: #BC8A5F;
+            --color-5: #BC8A5F; /* اللون الأساسي للهوية */
             --color-6: #A47148;
             --color-7: #8B5E34;
             --color-8: #6F4518;
             --color-9: #603808;
-            --color-10: #583101;
-            --white-glass: rgba(255, 237, 216, 0.85);
+            --color-10: #583101; /* الأغمق - للفوتر والنصوص */
+            
+            --white-glass: rgba(255, 237, 216, 0.85); /* تعتمد على اللون الأول */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Noto Sans Arabic', 'Poppins', sans-serif;
-            background-color: var(--color-1);
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background-image: url('bg.jpg'); 
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
             color: var(--color-10);
             line-height: 1.6;
-            transition: all 0.3s ease;
+            transition: direction 0.3s;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -48,102 +53,151 @@
 
         .header-content { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 700; font-size: 1.4rem; color: var(--color-10); text-decoration: none; }
-        
         nav ul { display: flex; list-style: none; }
-        nav ul li { margin: 0 15px; }
+        nav ul li { margin-right: 20px; }
         nav ul li a { text-decoration: none; color: var(--color-9); font-weight: 700; transition: 0.3s; }
         nav ul li a:hover { color: var(--color-5); }
 
-        /* زر الإعدادات والقائمة */
-        .settings-container { position: relative; }
+        /* --- تصميم زر الإعدادات المضاف --- */
+        .settings-dropdown {
+            position: relative;
+            margin-right: 20px;
+        }
         .settings-btn {
-            background: var(--color-5);
-            color: white;
+            background: var(--color-8);
+            color: var(--color-1);
             border: none;
             width: 35px;
             height: 35px;
-            border-radius: 50%;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 1.1rem;
             transition: 0.3s;
         }
-        .settings-btn:hover { transform: rotate(90deg); background: var(--color-8); }
-
-        .dropdown-menu {
+        .settings-btn:hover { background: var(--color-10); transform: rotate(45deg); }
+        
+        .dropdown-content {
             display: none;
             position: absolute;
-            top: 45px;
-            left: 0; /* للغة العربية */
-            background: white;
-            min-width: 160px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border-radius: 8px;
+            left: 0;
+            background-color: var(--color-1);
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            border: 1px solid var(--color-4);
+            z-index: 1001;
             overflow: hidden;
-            z-index: 2000;
         }
-        [dir="ltr"] .dropdown-menu { left: auto; right: 0; }
-
         .dropdown-item {
             padding: 10px 15px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 10px;
-            cursor: pointer;
-            color: var(--color-10);
             font-size: 0.9rem;
+            color: var(--color-10);
+            font-weight: bold;
         }
-        .dropdown-item:hover { background: var(--color-2); }
+        .dropdown-item:hover { background-color: var(--color-2); }
         .show { display: block; }
+        /* -------------------------------- */
 
         /* Hero Section */
         .hero {
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
-            background: linear-gradient(rgba(255,237,216,0.8), rgba(255,237,216,0.8)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
+            background: rgba(96, 56, 8, 0.1); /* شفافية من اللون التاسع */
+            backdrop-filter: blur(3px);
+            border-bottom: 1px solid var(--color-4);
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
+
+        .hero h1 { font-size: 3.2rem; color: var(--color-10); margin-bottom: 15px; }
+        .hero p { color: var(--color-9); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; }
+        
         .btn-main {
             display: inline-block;
-            background: var(--color-8);
-            color: white;
-            padding: 12px 30px;
+            background-color: var(--color-8);
+            color: var(--color-1);
+            padding: 12px 35px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: 0.3s;
         }
+        .btn-main:hover { background-color: var(--color-10); transform: translateY(-2px); }
 
-        /* Features */
+        /* Content Grid */
         .features { padding: 80px 0; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
         .card {
-            background: white;
-            border-radius: 12px;
+            background: var(--white-glass);
+            border-bottom: 5px solid var(--color-6);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(88, 49, 1, 0.1);
             transition: 0.3s;
-            border-bottom: 4px solid var(--color-5);
         }
-        .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(88, 49, 1, 0.2); }
+        .card img { width: 100%; height: 200px; object-fit: cover; filter: sepia(20%); }
+        .card-body { padding: 25px; }
+        .card-body h3 { color: var(--color-10); margin-bottom: 12px; font-size: 1.4rem; }
+        .card-body p { color: var(--color-9); font-size: 0.95rem; }
 
-        /* Footer */
-        footer { background: var(--color-10); color: white; padding: 50px 0 20px; margin-top: 50px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: var(--color-3); margin-bottom: 20px; }
+        /* Footer Section */
+        footer {
+            background-color: var(--color-10); /* اللون الأغمق للفوتر */
+            color: var(--color-1);
+            padding: 60px 0 30px 0;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--color-2);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            right: 0; bottom: 0;
+            width: 40px; height: 3px;
+            background: var(--color-5);
+        }
+
+        .footer-col p, .footer-col ul li { font-size: 0.9rem; color: var(--color-2); margin-bottom: 12px; }
         .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #ccc; text-decoration: none; }
-        .social-links { display: flex; gap: 15px; margin-top: 15px; font-size: 1.5rem; }
-        .social-links a { color: white; }
+        .footer-col ul li a { color: var(--color-2); text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--color-4); padding-right: 8px; }
 
-        .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 20px; font-size: 0.8rem; }
+        .social-links a {
+            color: var(--color-1);
+            font-size: 1.6rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+        .social-links a:hover { color: var(--color-4); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,237,216, 0.1);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-3);
+        }
 
         @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
             nav ul { display: none; }
-            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -151,29 +205,28 @@
 
     <header>
         <div class="container header-content">
-            <a href="#" class="logo" id="logoText">هندسة تقنيات الذكاء الاصطناعي</a>
-            
+            <a href="#" class="logo" id="mainLogo">هندسة تقنيات الذكاء الاصطناعي </a>
             <nav>
-                <ul id="navLinks">
-                    <li><a href="#" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
-                    <li><a href="#" data-ar="المناهج" data-en="Curriculum">المناهج</a></li>
-                    <li><a href="#" data-ar="البحوث" data-en="Research">البحوث</a></li>
-                    <li><a href="#" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a></li>
+                <ul id="mainNav">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">المناهج</a></li>
+                    <li><a href="#">البحوث</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
                 </ul>
             </nav>
 
-            <div class="settings-container">
-                <button class="settings-btn" onclick="toggleDropdown()">
+            <div class="settings-dropdown">
+                <button class="settings-btn" id="setBtn">
                     <i class="fas fa-cog"></i>
                 </button>
-                <div class="dropdown-menu" id="settingsMenu">
-                    <div class="dropdown-item" onclick="changeLanguage()">
+                <div class="dropdown-content" id="setMenu">
+                    <div class="dropdown-item" onclick="toggleLang()">
                         <i class="fas fa-language"></i>
                         <span id="langLabel">English</span>
                     </div>
                     <div class="dropdown-item">
-                        <i class="fas fa-moon"></i>
-                        <span data-ar="الوضع الليلي" data-en="Dark Mode">الوضع الليلي</span>
+                        <i class="fas fa-plus"></i>
+                        <span>إضافة قادمة</span>
                     </div>
                 </div>
             </div>
@@ -182,36 +235,40 @@
 
     <section class="hero">
         <div class="container">
-            <h1 id="heroTitle">التميز العلمي والمعرفي</h1>
-            <p id="heroDesc">مرحبًا بكم في البوابة الرقمية للقسم، حيث نجتمع لبناء مستقبل أفضل من خلال العلم والابتكار.</p>
-            <a href="#" class="btn-main" id="heroBtn">استكشف</a>
+            <h1 id="heroH">التميز العلمي والمعرفي</h1>
+            <p id="heroP">مرحبًا بكم في البوابة الرقمية للقسم، حيث نجتمع لبناء مستقبل أفضل من خلال العلم والابتكار.</p>
+            <a href="#" class="btn-main" id="heroB">استكشف</a>
         </div>
     </section>
 
     <section class="features">
         <div class="container">
             <div class="grid-container">
+                
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60" alt="Education">
                     <div class="card-body">
-                        <h3 data-ar="المناهج الدراسية" data-en="Academic Curriculum">المناهج الدراسية</h3>
-                        <p data-ar="اطلع على الخطة الدراسية التفصيلية والمواد المقررة لكل مرحلة دراسية." data-en="Check the detailed study plan and courses for each academic stage.">اطلع على الخطة الدراسية التفصيلية والمواد المقررة لكل مرحلة دراسية.</p>
+                        <h3>المناهج الدراسية</h3>
+                        <p>اطلع على الخطة الدراسية التفصيلية والمواد المقررة لكل مرحلة دراسية في القسم.</p>
                     </div>
                 </div>
+
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60" alt="Research">
                     <div class="card-body">
-                        <h3 data-ar="المختبرات العلمية" data-en="Scientific Labs">المختبرات العلمية</h3>
-                        <p data-ar="تعرف على أحدث الأجهزة والمعدات المتوفرة في مختبرات القسم." data-en="Learn about the latest equipment available in the department's labs.">تعرف على أحدث الأجهزة والمعدات المتوفرة في مختبرات القسم.</p>
+                        <h3>المختبرات العلمية</h3>
+                        <p>تعرف على أحدث الأجهزة والمعدات المتوفرة في مختبرات القسم لخدمة الجانب التطبيقي.</p>
                     </div>
                 </div>
+
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=60">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=60" alt="Students">
                     <div class="card-body">
-                        <h3 data-ar="شؤون الطلبة" data-en="Student Affairs">شؤون الطلبة</h3>
-                        <p data-ar="كل ما يخص الطالب من جداول الامتحانات والنتائج والتعليمات." data-en="Everything related to students: exam schedules, results, and regulations.">كل ما يخص الطالب من جداول الامتحانات والنتائج والتعليمات.</p>
+                        <h3>شؤون الطلبة</h3>
+                        <p>كل ما يخص الطالب من جداول الامتحانات، نتائج، وتعليمات انضباطية.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -220,12 +277,24 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4 data-ar="رسالة القسم" data-en="Our Mission">رسالة القسم</h4>
-                    <p data-ar="إعداد كفاءات علمية متخصصة قادرة على الإبداع والمنافسة." data-en="Preparing specialized scientific talents capable of innovation and competition.">إعداد كفاءات علمية متخصصة قادرة على الإبداع والمنافسة.</p>
+                    <h4>رسالة القسم</h4>
+                    <p>إعداد كفاءات علمية متخصصة قادرة على الإبداع والمنافسة في سوق العمل المحلي والدولي.</p>
                 </div>
+
                 <div class="footer-col">
-                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
-                    <p>dept@university.edu.iq</p>
+                    <h4>روابط هامة</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-link"></i> الباحث العلمي</a></li>
+                        <li><a href="#"><i class="fas fa-link"></i> مجلة الكلية</a></li>
+                        <li><a href="#"><i class="fas fa-link"></i> شؤون الدراسات العليا</a></li>
+                        <li><a href="#"><i class="fas fa-link"></i> وظيفة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-envelope"></i> dept@university.edu.iq</p>
+                    <p><i class="fas fa-phone"></i> 0780 000 0000</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-telegram"></i></a>
@@ -233,73 +302,41 @@
                     </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p id="copyright">&copy; 2026 جميع الحقوق محفوظة للقسم الأكاديمي</p>
+                <p>&copy;جميع الحقوق محفوظة للقسم الأكاديمي. .</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // لفتح وإغلاق القائمة
-        function toggleDropdown() {
-            document.getElementById("settingsMenu").classList.toggle("show");
-        }
+        // إظهار وإخفاء قائمة الإعدادات
+        const btn = document.getElementById('setBtn');
+        const menu = document.getElementById('setMenu');
 
-        // إغلاق القائمة عند الضغط في الخارج
-        window.onclick = function(event) {
-            if (!event.target.matches('.settings-btn') && !event.target.matches('.fa-cog')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
-                }
-            }
-        }
-
-        // نظام تحويل اللغة
-        let currentLang = 'ar';
-
-        const content = {
-            ar: {
-                logo: "هندسة تقنيات الذكاء الاصطناعي",
-                heroTitle: "التميز العلمي والمعرفي",
-                heroDesc: "مرحبًا بكم في البوابة الرقمية للقسم، حيث نجتمع لبناء مستقبل أفضل من خلال العلم والابتكار.",
-                heroBtn: "استكشف",
-                langLabel: "English",
-                copyright: "© 2026 جميع الحقوق محفوظة للقسم الأكاديمي"
-            },
-            en: {
-                logo: "AI Techniques Engineering",
-                heroTitle: "Scientific Excellence",
-                heroDesc: "Welcome to our department's digital portal, where we unite to build a better future through science and innovation.",
-                heroBtn: "Explore",
-                langLabel: "العربية",
-                copyright: "© 2026 All Rights Reserved - Academic Dept"
-            }
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('show');
         };
 
-        function changeLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        window.onclick = () => menu.classList.remove('show');
+
+        // وظيفة تحويل اللغة البسيطة
+        function toggleLang() {
             const html = document.documentElement;
+            const label = document.getElementById('langLabel');
             
-            // تغيير الاتجاه واللغة في HTML
-            html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            html.lang = currentLang;
-
-            // تحديث النصوص الأساسية
-            document.getElementById("logoText").innerText = content[currentLang].logo;
-            document.getElementById("heroTitle").innerText = content[currentLang].heroTitle;
-            document.getElementById("heroDesc").innerText = content[currentLang].heroDesc;
-            document.getElementById("heroBtn").innerText = content[currentLang].heroBtn;
-            document.getElementById("langLabel").innerText = content[currentLang].langLabel;
-            document.getElementById("copyright").innerText = content[currentLang].copyright;
-            document.getElementById("pageTitle").innerText = content[currentLang].logo;
-
-            // تحديث العناصر المتكررة (القائمة والكروت)
-            document.querySelectorAll('[data-ar]').forEach(el => {
-                el.innerText = el.getAttribute(`data-${currentLang}`);
-            });
-
-            toggleDropdown(); // إغلاق القائمة بعد الاختيار
+            if (html.dir === "rtl") {
+                html.dir = "ltr";
+                html.lang = "en";
+                label.innerText = "العربية";
+                document.getElementById('mainLogo').innerText = "AI Tech Engineering";
+            } else {
+                html.dir = "rtl";
+                html.lang = "ar";
+                label.innerText = "English";
+                document.getElementById('mainLogo').innerText = "هندسة تقنيات الذكاء الاصطناعي";
+            }
         }
     </script>
 </body>
