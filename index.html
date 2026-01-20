@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* تطبيق لوحة الألوان الخاصة بك */
+        /* لوحة الألوان الخاصة بك */
         :root {
             --color-1: #FFEDD8; 
             --color-2: #F3D5B5;
@@ -21,20 +21,32 @@
             --color-8: #6F4518;
             --color-9: #603808;
             --color-10: #583101; 
-            
             --white-glass: rgba(255, 237, 216, 0.85);
+            --bg-image: url('bg.jpg');
+        }
+
+        /* ألوان الوضع الليلي (Dark Mode) */
+        [data-theme="dark"] {
+            --color-1: #1a120b; /* خلفية داكنة جداً */
+            --color-2: #3c2a21;
+            --color-3: #4e362a;
+            --color-10: #FFEDD8; /* نصوص فاتحة */
+            --color-9: #F3D5B5;
+            --white-glass: rgba(60, 42, 33, 0.9);
+            --bg-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('bg.jpg');
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Noto Sans Arabic', sans-serif;
-            background-image: url('bg.jpg'); 
+            background: var(--bg-image); 
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
             color: var(--color-10);
             line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -56,19 +68,19 @@
         nav ul li a { text-decoration: none; color: var(--color-9); font-weight: 700; transition: 0.3s; }
         nav ul li a:hover { color: var(--color-5); }
 
-        /* زر الإعدادات */
+        /* زر الإعدادات والقائمة المنسدلة */
         .settings-dropdown { position: relative; margin-right: 15px; margin-left: 15px; }
         .settings-btn {
-            background: var(--color-8); color: var(--color-1); border: none;
+            background: var(--color-8); color: white; border: none;
             width: 35px; height: 35px; border-radius: 5px; cursor: pointer; transition: 0.3s;
         }
         .settings-btn:hover { background: var(--color-10); transform: rotate(45deg); }
         .dropdown-content {
             display: none; position: absolute; left: 0; background-color: var(--color-1);
-            min-width: 150px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 4px;
+            min-width: 170px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 4px;
             border: 1px solid var(--color-4); z-index: 1001;
         }
-        .dropdown-item { padding: 10px 15px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-10); font-weight: bold; }
+        .dropdown-item { padding: 12px 15px; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-10); font-weight: bold; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .dropdown-item:hover { background-color: var(--color-2); }
         .show { display: block; }
 
@@ -79,7 +91,7 @@
         .hero h1 { font-size: 3.2rem; color: var(--color-10); margin-bottom: 15px; }
         .hero p { color: var(--color-9); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; }
         .btn-main {
-            display: inline-block; background-color: var(--color-8); color: var(--color-1);
+            display: inline-block; background-color: var(--color-8); color: white;
             padding: 12px 35px; text-decoration: none; font-weight: 700; border-radius: 4px; transition: 0.3s;
         }
 
@@ -121,6 +133,10 @@
                     <div class="dropdown-item" onclick="changeLang()">
                         <i class="fas fa-language"></i>
                         <span id="btn-text">English</span>
+                    </div>
+                    <div class="dropdown-item" onclick="toggleTheme()">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                        <span id="theme-text" data-key="theme-dark">الوضع الليلي</span>
                     </div>
                 </div>
             </div>
@@ -194,6 +210,7 @@
     </footer>
 
     <script>
+        // قاموس الترجمة
         const translations = {
             ar: {
                 "logo": "هندسة تقنيات الذكاء الاصطناعي",
@@ -204,7 +221,8 @@
                 "c3-h": "شؤون الطلبة", "c3-p": "كل ما يخص الطالب من جداول الامتحانات، نتائج، وتعليمات انضباطية.",
                 "f-h1": "رسالة القسم", "f-p1": "إعداد كفاءات علمية متخصصة قادرة على الإبداع والمنافسة في سوق العمل المحلي والدولي.",
                 "f-h2": "روابط هامة", "f-h3": "تواصل معنا", "l1": "الباحث العلمي", "l2": "مجلة الكلية", "l3": "شؤون الدراسات العليا",
-                "copy": "جميع الحقوق محفوظة للقسم الأكاديمي.", "btn-text": "English"
+                "copy": "جميع الحقوق محفوظة للقسم الأكاديمي.", "btn-text": "English",
+                "theme-dark": "الوضع الليلي", "theme-light": "الوضع النهاري"
             },
             en: {
                 "logo": "AI Techniques Engineering",
@@ -215,17 +233,20 @@
                 "c3-h": "Student Affairs", "c3-p": "Everything related to exam schedules, results, and disciplinary instructions.",
                 "f-h1": "Our Mission", "f-p1": "Preparing specialized scientific competencies capable of innovation and competition.",
                 "f-h2": "Important Links", "f-h3": "Contact Us", "l1": "Google Scholar", "l2": "College Journal", "l3": "Postgraduate Affairs",
-                "copy": "All Rights Reserved to the Academic Department.", "btn-text": "العربية"
+                "copy": "All Rights Reserved to the Academic Department.", "btn-text": "العربية",
+                "theme-dark": "Dark Mode", "theme-light": "Light Mode"
             }
         };
 
         let currentLang = 'ar';
 
+        // دالة فتح القائمة
         function toggleMenu(e) {
             e.stopPropagation();
             document.getElementById("myMenu").classList.toggle("show");
         }
 
+        // دالة تحويل اللغة
         function changeLang() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -233,10 +254,32 @@
 
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                el.innerText = translations[currentLang][key];
+                if (translations[currentLang][key]) el.innerText = translations[currentLang][key];
             });
 
             document.getElementById("btn-text").innerText = translations[currentLang]["btn-text"];
+            // تحديث نص الثيم بناء على الوضع الحالي واللغة الجديدة
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.getElementById("theme-text").innerText = isDark ? translations[currentLang]["theme-light"] : translations[currentLang]["theme-dark"];
+
+            document.getElementById("myMenu").classList.remove("show");
+        }
+
+        // دالة تحويل الثيم (Dark/Light)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById("theme-icon");
+            const themeText = document.getElementById("theme-text");
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.className = "fas fa-moon";
+                themeText.innerText = translations[currentLang]["theme-dark"];
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.className = "fas fa-sun";
+                themeText.innerText = translations[currentLang]["theme-light"];
+            }
             document.getElementById("myMenu").classList.remove("show");
         }
 
